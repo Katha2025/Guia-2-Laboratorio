@@ -38,13 +38,6 @@ Otra limitación corresponde a la variabilidad individual. Las respuestas electr
 
 Por esta razón, aunque la GSR constituye una herramienta útil para estudiar la activación fisiológica asociada con situaciones de estrés, no debería considerarse como una medida aislada y absoluta del nivel de estrés de una persona. Su utilidad aumenta cuando se controla el contexto experimental y se complementa con otras variables fisiológicas o con la percepción subjetiva del individuo.[3]
 
-**Referencias**
-
-1. A. Klimek et al., “Wearables measuring electrodermal activity to assess perceived stress in care: a scoping review,” Acta Neuropsychiatrica, vol. 37, e19, 2023.
-2. H. F. Posada-Quintero and K. H. Chon, “Innovations in Electrodermal Activity Data Collection and Signal Processing: A Systematic Review,” Sensors, vol. 20, no. 2, p. 479, 2020.
-   
-3. “Smart Devices and Wearable Technologies to Detect and Monitor Mental Health Conditions and Stress: A Systematic Review,” revisión sistemática disponible en JMIR/PMC
-
 # 2) Efectos de la corriente directa y alterna en el ser humano
 La circulación de una corriente eléctrica a través del cuerpo humano puede producir diferentes efectos fisiológicos cuya gravedad depende principalmente de la magnitud de la corriente, el tiempo de exposición y la trayectoria que esta sigue a través del organismo. De acuerdo con la norma IEC 60479-1:2018, también influyen factores como la impedancia corporal, la frecuencia de la corriente, el área de contacto, la humedad de la piel y las condiciones de contacto. La impedancia del cuerpo no es constante y presenta componentes resistivas y capacitivas, por lo que la relación entre la tensión aplicada y la corriente resultante no es lineal.
 
@@ -67,5 +60,18 @@ Para lograr dar con un sistema de medición continua en respuesta galvánica, se
 En este circuito, la piel actúa como una resistencia variable, la cuál esta en forma de divisor de voltaje con R1. El capacitor C1 filtra el ruido y fluctuaciones rápidas causadas por movimiento o interferencias en la señal. La pie va a poder cambiar su resistencia dependiendo de la cantidad de sudor, entre más se sude, menor es la resistencia, dando con una mayor conductacia.
 
 **Cálculos**
+De acuerdo a la norma IEC 60479-1, la corrientes del orden de 1mA corresponden al umbral de percepción, este es el nivel a partir del cual una persona comienza a sentir una ligera sensación de hormigueo. De hecho, esta norma estable que para corrientes alternas de 15-100 Hz ppor debajo de 0.5 mA no hay reacción fisiológica apreciable, a partir de 0.5 mA se entra en la zona de percepción y reacción [4]. 
+
+<img width="750" height="400" alt="image" src="https://github.com/user-attachments/assets/7b1b8929-e278-4bb2-9efd-6a019a1a10e2" />
+
+Con este diseño se tiene el objetivo de que incluso en condiciones de falla (R_skin=0), la corriente permanezca en niveles muy inferiores a aquellos capaces de producir efectos fisiológicos adversos.
+
 Para garantizar que a tráves de la piel no circulen corrientes mayor a 1 mA se realizaron los siguientes cálculos.
 <img width="980" height="807" alt="image" src="https://github.com/user-attachments/assets/bc134761-43ab-43f0-9f34-cb441d514637" />
+
+**Referencias**
+
+1. A. Klimek et al., “Wearables measuring electrodermal activity to assess perceived stress in care: a scoping review,” Acta Neuropsychiatrica, vol. 37, e19, 2023.
+2. H. F. Posada-Quintero and K. H. Chon, “Innovations in Electrodermal Activity Data Collection and Signal Processing: A Systematic Review,” Sensors, vol. 20, no. 2, p. 479, 2020.  
+3. “Smart Devices and Wearable Technologies to Detect and Monitor Mental Health Conditions and Stress: A Systematic Review,” revisión sistemática disponible en JMIR/PMC
+4. E. Tolocka and E. Tolocka, “Efectos de la corriente sobre el cuerpo. Gráfica IEC 60479 | profe Tolocka,” Profe Tolocka | Explora Tutoriales Gratuitos De Electricidad Y Electrónica. Aprende a Tu Ritmo Con Proyectos Maker Y Lecciones De Programación Para Todos Los Niveles., Jan. 19, 2025. https://www.profetolocka.com.ar/2018/02/16/efectos-de-la-corriente-electrica-sobre-el-cuerpo/
