@@ -112,13 +112,17 @@ Con este código se evaluó el comportamiento del del dispositivo al tener el su
 7) Siguiendo, se le instruyó al sujeto que se mantuviera en reposo y sentado, para realizar una inspiración profunda rápida y una exhalación lenta y sostenida.
 8) Continuando, se implementó un código que permitió observar los niveles de estres de forma inalambrica. (*)
 
+<img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/2c6bdf5a-b536-41bf-8e71-581e3da3b75a" />
+_Figura 10. Toma de datos graficados a tiempo real con advertencia de estrés por medio inalámbrico.
+
+
 # Resultados
 
 <img width="1600" height="736" alt="image" src="https://github.com/user-attachments/assets/ff4447f5-fc16-47eb-bd76-5744279162a7" />
-_Figura 7. Gráfica GSR, sujeto en movimiento_
+_Figura 8. Gráfica GSR, sujeto en movimiento_
 
 <img width="1600" height="690" alt="image" src="https://github.com/user-attachments/assets/28bf78eb-a373-479a-b616-c16b24592cdc" />
-_Figura 8. Gráfica GSR, sujeto en reposo, inspiración rápida y espiración lenta_
+_Figura 9. Gráfica GSR, sujeto en reposo, inspiración rápida y espiración lenta_
 
 
 **Referencias**
