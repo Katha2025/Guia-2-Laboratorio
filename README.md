@@ -59,7 +59,10 @@ A pesar de estas diferencias, la corriente continua no debe considerarse inocua.
 **Circuito**
 
 Para lograr dar con un sistema de medición continua en respuesta galvánica, se utilizo el siguiente circuito:
+
 [aqui va la imagen xd]
+_Figura 1. Circuito de captura de señal GSR._
+
 En este circuito, la piel actúa como una resistencia variable, la cuál esta en forma de divisor de voltaje con R1. La piel se considera variable porque va a poder cambiar su resistencia dependiendo de la cantidad de sudor, entre más se sude, menor es la resistencia, dando con una mayor conductacia. El capacitor C1 filtra el ruido y fluctuaciones rápidas causadas por movimiento o interferencias en la señal. 
 
 **Cálculos**
@@ -78,6 +81,14 @@ Considerando que la alimentación máxima de este caso es de 3.3V y en el peor c
 
 Se hace uso de una resistencia de 68 kΩ ya que esta alrededor del mismo orden de magnitud que la resistencia de la piel (50 kΩ-100 kΩ) [6]. Si la resistencia fija es comparable a los valores de la piel, el divisor de voltaje propuesto tiene buena sensibilidad a cambios de conductancia. Si se usara un valor de resistencia demasiado pequeño, la mayoría de voltaje caería sobre la piel y los cambios medidos serían pequeños. Si el valor fuera muy alto, la señal sería muy sensible al ruido. 
 
+# Parte B
+
+#Procedimiento:
+
+1) Para iniciar, se hizo una revisión bibliográfica acerca de las áreas anatómicas que presentan mayor actividad por parte de las glándulas sudoríparas. A partir de esto se determino que la frente es una de las zonas corporales con mayor densidad de glándulas sudoríparas ecrinas [7] y que más produce sudor durante el calor o el ejercicio [8]. Con esta información se dio inicio al diseño de un dispositivo vestible para capturar señales GSR aplicado en la frente.
+2) Para dar inicio con el diseño, fue necesario corroborar que los valores de corriente resultante del circuito propuesto que entraran en contacto con la piel estuvieran dentro del rango seguro. Para esto se realizaron los cálculos de la figura 
+
+
 **Referencias**
 
 1. A. Klimek et al., “Wearables measuring electrodermal activity to assess perceived stress in care: a scoping review,” Acta Neuropsychiatrica, vol. 37, e19, 2023.
@@ -86,3 +97,5 @@ Se hace uso de una resistencia de 68 kΩ ya que esta alrededor del mismo orden d
 4. International Electrotechnical Commission, IEC 60479-1:2018, Effects of current on human beings and livestock—Part 1: General aspects. Geneva, Switzerland: IEC, 2018.
 5. E. Tolocka and E. Tolocka, “Efectos de la corriente sobre el cuerpo. Gráfica IEC 60479 | profe Tolocka,” Profe Tolocka | Explora Tutoriales Gratuitos De Electricidad Y Electrónica. Aprende a Tu Ritmo Con Proyectos Maker Y Lecciones De Programación Para Todos Los Niveles., Jan. 19, 2025. https://www.profetolocka.com.ar/2018/02/16/efectos-de-la-corriente-electrica-sobre-el-cuerpo/
 6. A. N. Phadke, K. Harasheh, and S. Gill, “Wearable IOT-Enabled Galvanic Skin Response Device for objective pain and stress monitoring: hardware design and prototype development,” Sensors, vol. 26, no. 1, p. 116, Dec. 2025, doi: 10.3390/s26010116.
+7. L. B. Baker, “Physiology of sweat gland function: The roles of sweating and sweat composition in human health,” Temperature, vol. 6, no. 3, pp. 211–259, Jun. 2019, doi: 10.1080/23328940.2019.1632145.
+8. N. A. Taylor and C. A. Machado-Moreira, “Regional variations in transepidermal water loss, eccrine sweat gland density, sweat secretion rates and electrolyte composition in resting and exercising humans,” Extreme Physiology & Medicine, vol. 2, no. 1, p. 4, Feb. 2013, doi: 10.1186/2046-7648-2-4.
