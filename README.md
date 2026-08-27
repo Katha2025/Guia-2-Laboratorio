@@ -60,7 +60,7 @@ A pesar de estas diferencias, la corriente continua no debe considerarse inocua.
 
 Para lograr dar con un sistema de medición continua en respuesta galvánica, se utilizo el siguiente circuito:
 
-[aqui va la imagen xd]
+<img width="731" height="452" alt="image" src="https://github.com/user-attachments/assets/79b6720f-8e87-4c03-a9de-4a3d1b6dfd7a" />
 _Figura 1. Circuito de captura de señal GSR_
 
 En este circuito, la piel actúa como una resistencia variable, la cuál esta en forma de divisor de voltaje con R1. La piel se considera variable porque va a poder cambiar su resistencia dependiendo de la cantidad de sudor, entre más se sude, menor es la resistencia, dando con una mayor conductacia. El capacitor C1 filtra el ruido y fluctuaciones rápidas causadas por movimiento o interferencias en la señal. 
