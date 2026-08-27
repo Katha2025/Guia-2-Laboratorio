@@ -70,12 +70,14 @@ En este circuito, la piel actúa como una resistencia variable, la cuál esta en
 De acuerdo a la norma IEC 60479-1, la corrientes del orden de 1mA corresponden al umbral de percepción, este es el nivel a partir del cual una persona comienza a sentir una ligera sensación de hormigueo. De hecho, esta norma estable que para corrientes alternas de 15-100 Hz por debajo de 0.5 mA no hay reacción fisiológica apreciable, a partir de 0.5 mA se entra en la zona de percepción y reacción [4][5]. 
 
 <img width="750" height="400" alt="image" src="https://github.com/user-attachments/assets/7b1b8929-e278-4bb2-9efd-6a019a1a10e2" />
+_Figura 2. Gráfica de efectos de corriente sobre humanos, norma IEC 60479-1._
 
 Con este diseño se tiene el objetivo de que incluso en condiciones de falla (R_skin=0), la corriente permanezca en niveles muy inferiores a aquellos capaces de producir efectos fisiológicos adversos.
 
 Para garantizar que a tráves de la piel no circulen corrientes mayor a 1 mA se realizaron los siguientes cálculos.
 
 <img width="980" height="807" alt="image" src="https://github.com/user-attachments/assets/bc134761-43ab-43f0-9f34-cb441d514637" />
+_Figura 3. Cálculos de corriente máxmia._
 
 Considerando que la alimentación máxima de este caso es de 3.3V y en el peor caso la corriente debe limitarse a un máximo de 1 mA, se aplica la ley de Ohm para obtener el valor de la resistencia limitante. Su valor fue de 3.3 kΩ. El diseño propuesto emplea una resistencia de 68 kΩ, por lo que la corriente máxima posible es de 48.5 μA, este valor es muy inferior al límite de seguridad establecido. 
 
@@ -86,7 +88,19 @@ Se hace uso de una resistencia de 68 kΩ ya que esta alrededor del mismo orden d
 #Procedimiento:
 
 1) Para iniciar, se hizo una revisión bibliográfica acerca de las áreas anatómicas que presentan mayor actividad por parte de las glándulas sudoríparas. A partir de esto se determino que la frente es una de las zonas corporales con mayor densidad de glándulas sudoríparas ecrinas [7] y que más produce sudor durante el calor o el ejercicio [8]. Con esta información se dio inicio al diseño de un dispositivo vestible para capturar señales GSR aplicado en la frente.
-2) Para dar inicio con el diseño, fue necesario corroborar que los valores de corriente resultante del circuito propuesto que entraran en contacto con la piel estuvieran dentro del rango seguro. Para esto se realizaron los cálculos de la figura 
+2) Para dar inicio con el diseño, fue necesario corroborar que los valores de corriente resultante del circuito propuesto que entraran en contacto con la piel estuvieran dentro del rango seguro. Para esto se realizaron los cálculos observados en la figura 3. Una vez se confirmaron que los valores utilizados eran seguros, se continuó con el diseño del dispositivo.
+3) Con el objetivo de capturar la señal GSR a partir de la frente del sujeto sin que el dispositivo limitara el movimiento, se propusieron varias opciones, cómo bandas elásticas para el pelo, velcro ajustado al tamaño de la cabeza de la persona, etc. La mejor solución que mejor se adaptaba a los requerimientos fue aplicar los electrodos en una gorra. Se seleccionó esta propuesta por varias razones: El sujeto puede vestir la gorra sin ninguna incomodidad ni añadir un obstáculo al movimiento; la gorra cuenta con una tira ajustable que se puede adaptar a diferentes tamaños para todo tipo de sujetos de prueba; el diseño de tela cerrada de la gorra fomenta la sudoración. Por estas razones, se hizo uso de una gorra como portador del dispositivo medidor de conductancia.
+4) Para lograr medir los cambios de conductancia en la piel, se utilizaron electrodos. Los electrodos actúan como un trasductor de tipos de conducción, ya que los tejidos biológicos la corriente se transporta principalmente por iones mientras que los cables la  transportan por electrones[9]. Es por esos que son impertinentes para la elaboración del dispositivo. Los electrodos se emplementaron a partir de un cable de cobre, que conecta el circuito al electrodo, y una lámina de aluminio. Se realizó de esta manera ya que, el cobre tiene una conductividad eléctrica alta, además de ser flexible y fácil de conectar a un circuito. En adición, la lámina de aluminio es conductora y aumenta el área de contacto con la piel lo cual reduce la impedancia de la interfaz piel-electrodo. Esto se implemento adheriendo el cable de cobre con una lámina rectangular de aluminio por medio de una cinta doble faz, la parte de atrás se adherió a la gorra.
+
+<img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/0207e2cd-6d52-4f48-8ea4-59071d4b4711" />
+
+5) Una vez se construyeron los electrodos, se realizó el montaje del circuito.
+
+<img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/1cf153c0-0ed6-477a-be7d-97cc708457d0" />
+
+
+6) 
+
 
 
 **Referencias**
@@ -99,3 +113,4 @@ Se hace uso de una resistencia de 68 kΩ ya que esta alrededor del mismo orden d
 6. A. N. Phadke, K. Harasheh, and S. Gill, “Wearable IOT-Enabled Galvanic Skin Response Device for objective pain and stress monitoring: hardware design and prototype development,” Sensors, vol. 26, no. 1, p. 116, Dec. 2025, doi: 10.3390/s26010116.
 7. L. B. Baker, “Physiology of sweat gland function: The roles of sweating and sweat composition in human health,” Temperature, vol. 6, no. 3, pp. 211–259, Jun. 2019, doi: 10.1080/23328940.2019.1632145.
 8. N. A. Taylor and C. A. Machado-Moreira, “Regional variations in transepidermal water loss, eccrine sweat gland density, sweat secretion rates and electrolyte composition in resting and exercising humans,” Extreme Physiology & Medicine, vol. 2, no. 1, p. 4, Feb. 2013, doi: 10.1186/2046-7648-2-4.
+9. S. Grimnes and Ø. G. Martinsen, “Electrodes,” in Elsevier eBooks, 2014, pp. 179–254. doi: 10.1016/b978-0-12-411470-8.00007-6.
