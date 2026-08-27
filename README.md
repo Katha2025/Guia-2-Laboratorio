@@ -57,19 +57,26 @@ A pesar de estas diferencias, la corriente continua no debe considerarse inocua.
 # 3) Cálculos del sistema y circuito
 
 **Circuito**
+
 Para lograr dar con un sistema de medición continua en respuesta galvánica, se utilizo el siguiente circuito:
 [aqui va la imagen xd]
 En este circuito, la piel actúa como una resistencia variable, la cuál esta en forma de divisor de voltaje con R1. El capacitor C1 filtra el ruido y fluctuaciones rápidas causadas por movimiento o interferencias en la señal. La pie va a poder cambiar su resistencia dependiendo de la cantidad de sudor, entre más se sude, menor es la resistencia, dando con una mayor conductacia.
 
 **Cálculos**
-De acuerdo a la norma IEC 60479-1, la corrientes del orden de 1mA corresponden al umbral de percepción, este es el nivel a partir del cual una persona comienza a sentir una ligera sensación de hormigueo. De hecho, esta norma estable que para corrientes alternas de 15-100 Hz ppor debajo de 0.5 mA no hay reacción fisiológica apreciable, a partir de 0.5 mA se entra en la zona de percepción y reacción [4][5]. 
+
+De acuerdo a la norma IEC 60479-1, la corrientes del orden de 1mA corresponden al umbral de percepción, este es el nivel a partir del cual una persona comienza a sentir una ligera sensación de hormigueo. De hecho, esta norma estable que para corrientes alternas de 15-100 Hz por debajo de 0.5 mA no hay reacción fisiológica apreciable, a partir de 0.5 mA se entra en la zona de percepción y reacción [4][5]. 
 
 <img width="750" height="400" alt="image" src="https://github.com/user-attachments/assets/7b1b8929-e278-4bb2-9efd-6a019a1a10e2" />
 
 Con este diseño se tiene el objetivo de que incluso en condiciones de falla (R_skin=0), la corriente permanezca en niveles muy inferiores a aquellos capaces de producir efectos fisiológicos adversos.
 
 Para garantizar que a tráves de la piel no circulen corrientes mayor a 1 mA se realizaron los siguientes cálculos.
+
 <img width="980" height="807" alt="image" src="https://github.com/user-attachments/assets/bc134761-43ab-43f0-9f34-cb441d514637" />
+
+Considerando que la alimentación máxima de este caso es de 3.3V y en el peor caso la corriente debe limitarse a un máximo de 1 mA, se aplica la ley de Ohm para obtener el valor de la resistencia limitante. Su valor fue de 3.3 kΩ. El diseño propuesto emplea una resistencia de 68 kΩ, por lo que la corriente máxima posible es de 73.5μA, este valor es muy inferior al límite de seguridad establecido. 
+
+Se hace uso de una resistencia de 68 kΩ ya que esta alrededor de la resistencia de la piel (50 kΩ-100 kΩ) [6]. Si la resistencia fija es comparable a los valores de la piel, el divisor de voltaje propuesto tiene buena sensibilidad a cambios de conductancia. Si se usara un valor de resistencia demasiado pequeño, la mayoría de voltaje caería sobre la piel y los cambios medidos serían pequeños. Si el valor fuera muy alto, la señal sería muy sensible al ruido. 
 
 **Referencias**
 
@@ -78,3 +85,4 @@ Para garantizar que a tráves de la piel no circulen corrientes mayor a 1 mA se 
 3. “Smart Devices and Wearable Technologies to Detect and Monitor Mental Health Conditions and Stress: A Systematic Review,” revisión sistemática disponible en JMIR/PMC
 4. International Electrotechnical Commission, IEC 60479-1:2018, Effects of current on human beings and livestock—Part 1: General aspects. Geneva, Switzerland: IEC, 2018.
 5. E. Tolocka and E. Tolocka, “Efectos de la corriente sobre el cuerpo. Gráfica IEC 60479 | profe Tolocka,” Profe Tolocka | Explora Tutoriales Gratuitos De Electricidad Y Electrónica. Aprende a Tu Ritmo Con Proyectos Maker Y Lecciones De Programación Para Todos Los Niveles., Jan. 19, 2025. https://www.profetolocka.com.ar/2018/02/16/efectos-de-la-corriente-electrica-sobre-el-cuerpo/
+6. A. N. Phadke, K. Harasheh, and S. Gill, “Wearable IOT-Enabled Galvanic Skin Response Device for objective pain and stress monitoring: hardware design and prototype development,” Sensors, vol. 26, no. 1, p. 116, Dec. 2025, doi: 10.3390/s26010116.
