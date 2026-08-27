@@ -105,7 +105,10 @@ _Figura 6. Montaje del circuito._
 
 6) Se creó un código de MATLAB capaz de gráficar la señal tal cuál como es capturada y presentarla a tiempo real.
 
+Con este código se evaluó el comportamiento del del dispositivo al tener el sujeto en relajación sentado por 2 segundos, para despues ponerse de pie y empezar a moverse. 
 
+<img width="1600" height="736" alt="image" src="https://github.com/user-attachments/assets/ff4447f5-fc16-47eb-bd76-5744279162a7" />
+_Figura 7. Gráfica GSR, sujeto en movimiento._
 
 **Referencias**
 
