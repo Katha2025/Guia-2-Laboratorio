@@ -39,7 +39,8 @@ Otra limitación corresponde a la variabilidad individual. Las respuestas electr
 Por esta razón, aunque la GSR constituye una herramienta útil para estudiar la activación fisiológica asociada con situaciones de estrés, no debería considerarse como una medida aislada y absoluta del nivel de estrés de una persona. Su utilidad aumenta cuando se controla el contexto experimental y se complementa con otras variables fisiológicas o con la percepción subjetiva del individuo.[3]
 
 **Referencias**
-1.H. F. Posada-Quintero and K. H. Chon, “Innovations in Electrodermal Activity Data Collection and Signal Processing: A Systematic Review,” Sensors, vol. 20, no. 2, p. 479, 2020.
-2. A. Klimek et al., “Wearables measuring electrodermal activity to assess perc
-3. W. Boucsein, Electrodermal Activity, New York, NY, USA: Springer, 2012.
-4. “Smart Devices and Wearable Technologies to Detect and Monitor Mental Health Conditions and Stress: A Systematic Review,” revisión sistemática disponible en JMIR/PMC
+
+1. A. Klimek et al., “Wearables measuring electrodermal activity to assess perceived stress in care: a scoping review,” Acta Neuropsychiatrica, vol. 37, e19, 2023.
+2. H. F. Posada-Quintero and K. H. Chon, “Innovations in Electrodermal Activity Data Collection and Signal Processing: A Systematic Review,” Sensors, vol. 20, no. 2, p. 479, 2020.
+   
+3. “Smart Devices and Wearable Technologies to Detect and Monitor Mental Health Conditions and Stress: A Systematic Review,” revisión sistemática disponible en JMIR/PMC
