@@ -74,7 +74,7 @@ Para garantizar que a tráves de la piel no circulen corrientes mayor a 1 mA se 
 
 <img width="980" height="807" alt="image" src="https://github.com/user-attachments/assets/bc134761-43ab-43f0-9f34-cb441d514637" />
 
-Considerando que la alimentación máxima de este caso es de 3.3V y en el peor caso la corriente debe limitarse a un máximo de 1 mA, se aplica la ley de Ohm para obtener el valor de la resistencia limitante. Su valor fue de 3.3 kΩ. El diseño propuesto emplea una resistencia de 68 kΩ, por lo que la corriente máxima posible es de 73.5μA, este valor es muy inferior al límite de seguridad establecido. 
+Considerando que la alimentación máxima de este caso es de 3.3V y en el peor caso la corriente debe limitarse a un máximo de 1 mA, se aplica la ley de Ohm para obtener el valor de la resistencia limitante. Su valor fue de 3.3 kΩ. El diseño propuesto emplea una resistencia de 68 kΩ, por lo que la corriente máxima posible es de 48.5 μA, este valor es muy inferior al límite de seguridad establecido. 
 
 Se hace uso de una resistencia de 68 kΩ ya que esta alrededor del mismo orden de magnitud que la resistencia de la piel (50 kΩ-100 kΩ) [6]. Si la resistencia fija es comparable a los valores de la piel, el divisor de voltaje propuesto tiene buena sensibilidad a cambios de conductancia. Si se usara un valor de resistencia demasiado pequeño, la mayoría de voltaje caería sobre la piel y los cambios medidos serían pequeños. Si el valor fuera muy alto, la señal sería muy sensible al ruido. 
 
