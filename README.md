@@ -60,3 +60,12 @@ A pesar de estas diferencias, la corriente continua no debe considerarse inocua.
 International Electrotechnical Commission, IEC 60479-1:2018, Effects of current on human beings and livestock—Part 1: General aspects. Geneva, Switzerland: IEC, 2018.
 
 # 3) Cálculos del sistema y circuito
+
+**Circuito**
+Para lograr dar con un sistema de medición continua en respuesta galvánica, se utilizo el siguiente circuito:
+[aqui va la imagen xd]
+En este circuito, la piel actúa como una resistencia variable, la cuál esta en forma de divisor de voltaje con R1. El capacitor C1 filtra el ruido y fluctuaciones rápidas causadas por movimiento o interferencias en la señal. La pie va a poder cambiar su resistencia dependiendo de la cantidad de sudor, entre más se sude, menor es la resistencia, dando con una mayor conductacia.
+
+**Cálculos**
+Para garantizar que a tráves de la piel no circulen corrientes mayor a 1 mA se realizaron los siguientes cálculos.
+<img width="1280" height="1107" alt="image" src="https://github.com/user-attachments/assets/bc134761-43ab-43f0-9f34-cb441d514637" />
