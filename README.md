@@ -92,22 +92,24 @@ Se hace uso de una resistencia de 68 kΩ ya que esta alrededor del mismo orden d
 
 La mejor solución que mejor se adaptaba a los requerimientos fue usar una gorra como estructura de soporte para los electrodos. Se seleccionó esta propuesta por varias razones. En primer ligar el sujeto puede vestir la gorra naturalmente, sin ser un obstáculo para el movimiento. En segundo lugar, la gorra cuenta con un sistema de ajuste que se puede adaptar a diferentes tamaños, lo que facilita su utilización en distintos sujetos de prueba. Por último, el diseño de la tela cerrada de la gorra favorece la sudoración y la sujeción de los electrodos. Por estas razones, se hizo uso de una gorra como portador del dispositivo medidor de conductancia.
 
-4) Para lograr medir los cambios de conductancia en la piel, se utilizaron electrodos. Los electrodos actúan como un trasductor de tipos de conducción, ya que los tejidos biológicos la corriente se transporta principalmente por iones mientras que los cables la  transportan por electrones[9]. Es por esos que son impertinentes para la elaboración del dispositivo. Los electrodos se emplementaron a partir de un cable de cobre, que conecta el circuito al electrodo, y una lámina de aluminio. Se realizó de esta manera ya que, el cobre tiene una conductividad eléctrica alta, además de ser flexible y fácil de conectar a un circuito. En adición, la lámina de aluminio es conductora y aumenta el área de contacto con la piel lo cual reduce la impedancia de la interfaz piel-electrodo. Esto se implemento adheriendo el cable de cobre con una lámina rectangular de aluminio por medio de una cinta doble faz, la parte de atrás se adherió a la gorra.
+4) Para lograr medir los cambios de conductancia eléctrica en la piel, fue necesario implementar electrodos. Estos actúan como un trasductor entre dos tipos de conducción, ya que los tejidos biológicos la corriente se transporta principalmente por iones, mientras que los cables se transportan por electrones [9]. Es por esto que los electrodos son fundamentales para establecer la interfaz eléctrica entre la piel del sujeto y el circuito de adquisición. Los electrodos se fabricaron a partir de un cable de cobre conectado al circuito,  y una lámina de aluminio que constituye la superficie que entra en contacto con la piel. Se realizó de esta manera ya que, el cobre tiene una conductividad eléctrica alta, además de ser flexible y fácil de conectar a un circuito. Por otra parte, la lámina de aluminio es conductora y aumenta el área de contacto con la piel lo cual reduce la impedancia de la interfaz piel-electrodo. Los electrodos se construyeron fijando el cable de cobre con una lámina rectangular de aluminio mediante cinta adhesiva doble faz. El conjunto fue adherido a la parte interna de la gorra de manera que el aluminio quedara orientado hacia la frente del sujeto.
 
 <img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/0207e2cd-6d52-4f48-8ea4-59071d4b4711" />
 _Figura 4. Electrodos adheridos a la gorra_
 
+Se verificó que la ubicación y fijación de los electrodos fuera correcta, asegurandose que se mantuviera el contacto entre electrodo y piel durante las pruebas. 
+
 <img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/22109124-6822-4e69-9f6f-decfc9c32e8a" />
 _Figura 5. Dispositivo puesto sobre el sujeto_
 
-5) Una vez se construyeron los electrodos, se realizó el montaje del circuito. Se usó un microcontrolador ESP32 para realizar la conversión ADC.
+5) Una vez construidos y fijados los electrodos, se realizó el montaje del circuito. Para la adquisición y digitalización de la señal se utilizó un microcontrolador ESP32, el cual permitió realizar la conversión analógico-digital de la señal obtenida.
 
 <img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/1cf153c0-0ed6-477a-be7d-97cc708457d0" />
 _Figura 6. Montaje del circuito_
 
-6) Se creó un código de MATLAB capaz de gráficar la señal tal cuál como es capturada y presentarla a tiempo real.
+6) Una vez implementado el sistema de adquisición se creó un código de MATLAB capaz de gráficar la señal tal cuál como es capturada y presentarla a tiempo real.
 
-´´´
+```matlab
 clear;
 clc;
 close all;
@@ -169,16 +171,17 @@ while ishandle(figura)
         pause(0.001);
     end
 end
-´´´
 
 %% LIBERAR PUERTO
 clear esp32;
 disp("Adquisición finalizada.");
+```
 
-Con este código se evaluó el comportamiento del del dispositivo al tener el sujeto en relajación sentado por 6 segundos, para despues ponerse de pie y empezar a moverse. 
+Con este código se evaluó el comportamiento del dispositivo. Para ello, el sujeto permaneció sentado y en estado de relajación durante aproximadamente 6 segundos. Posteriormente, se le indicó que se pusiera de pie y empezara a moverse. 
 
-7) Siguiendo, se le instruyó al sujeto que se mantuviera en reposo y sentado, para realizar una inspiración profunda rápida y una exhalación lenta y sostenida.
-8) Continuando, se implementó un código que permitió observar los niveles de estres de forma inalambrica. (*)
+7) Siguiendo, se le instruyó al sujeto que se mantuviera en reposo y sentado, para realizar una inspiración profunda rápida y una exhalación lenta y sostenida. Los resultados se pueden visualizar en la siguiente sección.
+   
+8) Continuando, se implementó un código que permitió observar los niveles de estrés de forma inalambrica. (*)
 
 
 # Resultados
