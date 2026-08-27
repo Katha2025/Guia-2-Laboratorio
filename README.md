@@ -85,7 +85,7 @@ Se hace uso de una resistencia de 68 kΩ ya que esta alrededor del mismo orden d
 
 # Parte B
 
-#Procedimiento:
+# Procedimiento:
 
 1) Para iniciar, se hizo una revisión bibliográfica acerca de las áreas anatómicas que presentan mayor actividad por parte de las glándulas sudoríparas. A partir de esto se determino que la frente es una de las zonas corporales con mayor densidad de glándulas sudoríparas ecrinas [7] y que más produce sudor durante el calor o el ejercicio [8]. Con esta información se dio inicio al diseño de un dispositivo vestible para capturar señales GSR aplicado en la frente.
 2) Para dar inicio con el diseño, fue necesario corroborar que los valores de corriente resultante del circuito propuesto que entraran en contacto con la piel estuvieran dentro del rango seguro. Para esto se realizaron los cálculos observados en la figura 3. Una vez se confirmaron que los valores utilizados eran seguros, se continuó con el diseño del dispositivo.
@@ -107,10 +107,18 @@ _Figura 6. Montaje del circuito_
 
 Con este código se evaluó el comportamiento del del dispositivo al tener el sujeto en relajación sentado por 6 segundos, para despues ponerse de pie y empezar a moverse. 
 
-#Resultados
+[codigo]
+
+7) Siguiendo, se le instruyó al sujeto que se mantuviera en reposo y sentado, para realizar una inspiración profunda rápida y una exhalación lenta y sostenida.
+8) Continuando, se implementó un código que permitió observar los niveles de estres de forma inalambrica. (*)
+
+# Resultados
 
 <img width="1600" height="736" alt="image" src="https://github.com/user-attachments/assets/ff4447f5-fc16-47eb-bd76-5744279162a7" />
 _Figura 7. Gráfica GSR, sujeto en movimiento_
+
+<img width="1600" height="690" alt="image" src="https://github.com/user-attachments/assets/28bf78eb-a373-479a-b616-c16b24592cdc" />
+_Figura 8. Gráfica GSR, sujeto en reposo, inspiración rápida y espiración lenta_
 
 
 **Referencias**
