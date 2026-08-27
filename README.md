@@ -60,7 +60,7 @@ A pesar de estas diferencias, la corriente continua no debe considerarse inocua.
 
 Para lograr dar con un sistema de medición continua en respuesta galvánica, se utilizo el siguiente circuito:
 [aqui va la imagen xd]
-En este circuito, la piel actúa como una resistencia variable, la cuál esta en forma de divisor de voltaje con R1. El capacitor C1 filtra el ruido y fluctuaciones rápidas causadas por movimiento o interferencias en la señal. La pie va a poder cambiar su resistencia dependiendo de la cantidad de sudor, entre más se sude, menor es la resistencia, dando con una mayor conductacia.
+En este circuito, la piel actúa como una resistencia variable, la cuál esta en forma de divisor de voltaje con R1. La piel se considera variable porque va a poder cambiar su resistencia dependiendo de la cantidad de sudor, entre más se sude, menor es la resistencia, dando con una mayor conductacia. El capacitor C1 filtra el ruido y fluctuaciones rápidas causadas por movimiento o interferencias en la señal. 
 
 **Cálculos**
 
@@ -76,7 +76,7 @@ Para garantizar que a tráves de la piel no circulen corrientes mayor a 1 mA se 
 
 Considerando que la alimentación máxima de este caso es de 3.3V y en el peor caso la corriente debe limitarse a un máximo de 1 mA, se aplica la ley de Ohm para obtener el valor de la resistencia limitante. Su valor fue de 3.3 kΩ. El diseño propuesto emplea una resistencia de 68 kΩ, por lo que la corriente máxima posible es de 73.5μA, este valor es muy inferior al límite de seguridad establecido. 
 
-Se hace uso de una resistencia de 68 kΩ ya que esta alrededor de la resistencia de la piel (50 kΩ-100 kΩ) [6]. Si la resistencia fija es comparable a los valores de la piel, el divisor de voltaje propuesto tiene buena sensibilidad a cambios de conductancia. Si se usara un valor de resistencia demasiado pequeño, la mayoría de voltaje caería sobre la piel y los cambios medidos serían pequeños. Si el valor fuera muy alto, la señal sería muy sensible al ruido. 
+Se hace uso de una resistencia de 68 kΩ ya que esta alrededor del mismo orden de magnitud que la resistencia de la piel (50 kΩ-100 kΩ) [6]. Si la resistencia fija es comparable a los valores de la piel, el divisor de voltaje propuesto tiene buena sensibilidad a cambios de conductancia. Si se usara un valor de resistencia demasiado pequeño, la mayoría de voltaje caería sobre la piel y los cambios medidos serían pequeños. Si el valor fuera muy alto, la señal sería muy sensible al ruido. 
 
 **Referencias**
 
