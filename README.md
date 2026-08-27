@@ -110,6 +110,7 @@ Con este código se evaluó el comportamiento del del dispositivo al tener el su
 <img width="1600" height="736" alt="image" src="https://github.com/user-attachments/assets/ff4447f5-fc16-47eb-bd76-5744279162a7" />
 _Figura 7. Gráfica GSR, sujeto en movimiento._
 
+_hols_
 **Referencias**
 
 1. A. Klimek et al., “Wearables measuring electrodermal activity to assess perceived stress in care: a scoping review,” Acta Neuropsychiatrica, vol. 37, e19, 2023.
