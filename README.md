@@ -86,10 +86,12 @@ Se hace uso de una resistencia de 68 kΩ ya que esta alrededor del mismo orden d
 # Parte B
 
 # Procedimiento:
+1) Para iniciar, se realizó una revisión bibliográfica con el propósito de identificar las áreas anatómicas que presentan mayor actividad de las glándulas sudoríparas. A partir de esto se determino que la frente es una de las zonas corporales con mayor densidad de glándulas sudoríparas ecrinas [7] y que más produce sudor durante el calor o el ejercicio [8]. Debido a estas características, se seleccionó la frente como zona de interés de captura de señal galvánica de la piel. Con esta información, se dio inicio al diseño de un dispositivo vestible para capturar señales GSR.
+2) Antes de realizar el montaje, fue necesario verificar que los valores de corriente resultante del circuito propuesto que entraran en contacto con la piel estuvieran dentro del rango seguro. Para esto se realizaron los cálculos observados en la figura 3,  correspondientes a partir de los parámetros eléctricos del circuito propuesto. Una vez se confirmaron que los valores obtenidos se encontraban dentro del rango establecido para la aplicación, se continuó con el diseño del dispositivo.
+3) Con el objetivo de adquirir la señal GSR en la frente del sujeto sin restringir el movimiento, se evaluaron diferentes opciones para sujetar los electródos. Entre las opciones se encontraban el uso bandas elásticas para el pelo, velcro ajustado al tamaño de la cabeza de la persona, entre otras.
 
-1) Para iniciar, se hizo una revisión bibliográfica acerca de las áreas anatómicas que presentan mayor actividad por parte de las glándulas sudoríparas. A partir de esto se determino que la frente es una de las zonas corporales con mayor densidad de glándulas sudoríparas ecrinas [7] y que más produce sudor durante el calor o el ejercicio [8]. Con esta información se dio inicio al diseño de un dispositivo vestible para capturar señales GSR aplicado en la frente.
-2) Para dar inicio con el diseño, fue necesario corroborar que los valores de corriente resultante del circuito propuesto que entraran en contacto con la piel estuvieran dentro del rango seguro. Para esto se realizaron los cálculos observados en la figura 3. Una vez se confirmaron que los valores utilizados eran seguros, se continuó con el diseño del dispositivo.
-3) Con el objetivo de capturar la señal GSR a partir de la frente del sujeto sin que el dispositivo limitara el movimiento, se propusieron varias opciones, cómo bandas elásticas para el pelo, velcro ajustado al tamaño de la cabeza de la persona, etc. La mejor solución que mejor se adaptaba a los requerimientos fue aplicar los electrodos en una gorra. Se seleccionó esta propuesta por varias razones: El sujeto puede vestir la gorra sin ninguna incomodidad ni añadir un obstáculo al movimiento; la gorra cuenta con una tira ajustable que se puede adaptar a diferentes tamaños para todo tipo de sujetos de prueba; el diseño de tela cerrada de la gorra fomenta la sudoración. Por estas razones, se hizo uso de una gorra como portador del dispositivo medidor de conductancia.
+La mejor solución que mejor se adaptaba a los requerimientos fue usar una gorra como estructura de soporte para los electrodos. Se seleccionó esta propuesta por varias razones. En primer ligar el sujeto puede vestir la gorra naturalmente, sin ser un obstáculo para el movimiento. En segundo lugar, la gorra cuenta con un sistema de ajuste que se puede adaptar a diferentes tamaños, lo que facilita su utilización en distintos sujetos de prueba. Por último, el diseño de la tela cerrada de la gorra favorece la sudoración y la sujeción de los electrodos. Por estas razones, se hizo uso de una gorra como portador del dispositivo medidor de conductancia.
+
 4) Para lograr medir los cambios de conductancia en la piel, se utilizaron electrodos. Los electrodos actúan como un trasductor de tipos de conducción, ya que los tejidos biológicos la corriente se transporta principalmente por iones mientras que los cables la  transportan por electrones[9]. Es por esos que son impertinentes para la elaboración del dispositivo. Los electrodos se emplementaron a partir de un cable de cobre, que conecta el circuito al electrodo, y una lámina de aluminio. Se realizó de esta manera ya que, el cobre tiene una conductividad eléctrica alta, además de ser flexible y fácil de conectar a un circuito. En adición, la lámina de aluminio es conductora y aumenta el área de contacto con la piel lo cual reduce la impedancia de la interfaz piel-electrodo. Esto se implemento adheriendo el cable de cobre con una lámina rectangular de aluminio por medio de una cinta doble faz, la parte de atrás se adherió a la gorra.
 
 <img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/0207e2cd-6d52-4f48-8ea4-59071d4b4711" />
@@ -105,15 +107,78 @@ _Figura 6. Montaje del circuito_
 
 6) Se creó un código de MATLAB capaz de gráficar la señal tal cuál como es capturada y presentarla a tiempo real.
 
-Con este código se evaluó el comportamiento del del dispositivo al tener el sujeto en relajación sentado por 6 segundos, para despues ponerse de pie y empezar a moverse. 
+´´´
+clear;
+clc;
+close all;
 
-[codigo]
+%% CONFIGURACIÓN
+puerto = "COM6";
+baudios = 115200;
+fs = 500;
+
+duracionVentana = 20;
+N = fs * duracionVentana;
+
+%% CONECTAR CON EL ESP32
+esp32 = serialport(puerto, baudios);
+configureTerminator(esp32, "LF");
+flush(esp32);
+
+disp("Recibiendo voltaje GSR...");
+disp("Cierre la gráfica para finalizar.");
+
+%% VECTORES
+voltaje = nan(1, N);
+tiempo = linspace(-duracionVentana, 0, N);
+
+%% CREAR GRÁFICA
+figura = figure( ...
+    "Name", "Señal GSR en tiempo real", ...
+    "NumberTitle", "off", ...
+    "Color", "black");
+
+grafica = plot( ...
+    tiempo, voltaje, ...
+    "b", ...
+    "LineWidth", 1.5);
+
+grid on;
+xlabel("Tiempo (s)");
+ylabel("Voltaje GSR (V)");
+title("Señal GSR en tiempo real");
+
+xlim([-duracionVentana 0]);
+ylim([0 3.3]);
+
+%% ADQUISICIÓN
+while ishandle(figura)
+
+    if esp32.NumBytesAvailable > 0
+        texto = readline(esp32);
+        valor = str2double(strtrim(texto));
+
+        if ~isnan(valor) && valor >= 0 && valor <= 3.3
+            voltaje(1:end-1) = voltaje(2:end);
+            voltaje(end) = valor;
+
+            set(grafica, "YData", voltaje);
+            drawnow limitrate;
+        end
+    else
+        pause(0.001);
+    end
+end
+´´´
+
+%% LIBERAR PUERTO
+clear esp32;
+disp("Adquisición finalizada.");
+
+Con este código se evaluó el comportamiento del del dispositivo al tener el sujeto en relajación sentado por 6 segundos, para despues ponerse de pie y empezar a moverse. 
 
 7) Siguiendo, se le instruyó al sujeto que se mantuviera en reposo y sentado, para realizar una inspiración profunda rápida y una exhalación lenta y sostenida.
 8) Continuando, se implementó un código que permitió observar los niveles de estres de forma inalambrica. (*)
-
-<img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/2c6bdf5a-b536-41bf-8e71-581e3da3b75a" />
-_Figura 10. Toma de datos graficados a tiempo real con advertencia de estrés por medio inalámbrico.
 
 
 # Resultados
