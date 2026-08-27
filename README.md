@@ -93,13 +93,17 @@ Se hace uso de una resistencia de 68 kΩ ya que esta alrededor del mismo orden d
 4) Para lograr medir los cambios de conductancia en la piel, se utilizaron electrodos. Los electrodos actúan como un trasductor de tipos de conducción, ya que los tejidos biológicos la corriente se transporta principalmente por iones mientras que los cables la  transportan por electrones[9]. Es por esos que son impertinentes para la elaboración del dispositivo. Los electrodos se emplementaron a partir de un cable de cobre, que conecta el circuito al electrodo, y una lámina de aluminio. Se realizó de esta manera ya que, el cobre tiene una conductividad eléctrica alta, además de ser flexible y fácil de conectar a un circuito. En adición, la lámina de aluminio es conductora y aumenta el área de contacto con la piel lo cual reduce la impedancia de la interfaz piel-electrodo. Esto se implemento adheriendo el cable de cobre con una lámina rectangular de aluminio por medio de una cinta doble faz, la parte de atrás se adherió a la gorra.
 
 <img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/0207e2cd-6d52-4f48-8ea4-59071d4b4711" />
+_Figura 4. Electrodos adheridos a la gorra._
 
-5) Una vez se construyeron los electrodos, se realizó el montaje del circuito.
+<img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/22109124-6822-4e69-9f6f-decfc9c32e8a" />
+_Figura 5. Dispositivo puesto sobre el sujeto._
+
+5) Una vez se construyeron los electrodos, se realizó el montaje del circuito. Se usó un microcontrolador ESP32 para realizar la conversión ADC.
 
 <img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/1cf153c0-0ed6-477a-be7d-97cc708457d0" />
+_Figura 6. Montaje del circuito._
 
-
-6) 
+6) Se creó un código de MATLAB capaz de gráficar la señal tal cuál como es capturada y presentarla a tiempo real.
 
 
 
