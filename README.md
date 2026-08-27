@@ -59,4 +59,4 @@ A pesar de estas diferencias, la corriente continua no debe considerarse inocua.
 **Fuente**
 International Electrotechnical Commission, IEC 60479-1:2018, Effects of current on human beings and livestock—Part 1: General aspects. Geneva, Switzerland: IEC, 2018.
 
-# 3) Cálculos del sistema y Circuito
+# 3) Cálculos del sistema y circuito
