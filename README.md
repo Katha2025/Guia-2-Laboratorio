@@ -68,4 +68,4 @@ En este circuito, la piel actúa como una resistencia variable, la cuál esta en
 
 **Cálculos**
 Para garantizar que a tráves de la piel no circulen corrientes mayor a 1 mA se realizaron los siguientes cálculos.
-<img width="1180" height="1007" alt="image" src="https://github.com/user-attachments/assets/bc134761-43ab-43f0-9f34-cb441d514637" />
+<img width="980" height="807" alt="image" src="https://github.com/user-attachments/assets/bc134761-43ab-43f0-9f34-cb441d514637" />
