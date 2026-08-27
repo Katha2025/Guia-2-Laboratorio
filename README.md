@@ -61,7 +61,7 @@ A pesar de estas diferencias, la corriente continua no debe considerarse inocua.
 Para lograr dar con un sistema de medición continua en respuesta galvánica, se utilizo el siguiente circuito:
 
 [aqui va la imagen xd]
-_Figura 1. Circuito de captura de señal GSR._
+_Figura 1. Circuito de captura de señal GSR_
 
 En este circuito, la piel actúa como una resistencia variable, la cuál esta en forma de divisor de voltaje con R1. La piel se considera variable porque va a poder cambiar su resistencia dependiendo de la cantidad de sudor, entre más se sude, menor es la resistencia, dando con una mayor conductacia. El capacitor C1 filtra el ruido y fluctuaciones rápidas causadas por movimiento o interferencias en la señal. 
 
@@ -93,24 +93,26 @@ Se hace uso de una resistencia de 68 kΩ ya que esta alrededor del mismo orden d
 4) Para lograr medir los cambios de conductancia en la piel, se utilizaron electrodos. Los electrodos actúan como un trasductor de tipos de conducción, ya que los tejidos biológicos la corriente se transporta principalmente por iones mientras que los cables la  transportan por electrones[9]. Es por esos que son impertinentes para la elaboración del dispositivo. Los electrodos se emplementaron a partir de un cable de cobre, que conecta el circuito al electrodo, y una lámina de aluminio. Se realizó de esta manera ya que, el cobre tiene una conductividad eléctrica alta, además de ser flexible y fácil de conectar a un circuito. En adición, la lámina de aluminio es conductora y aumenta el área de contacto con la piel lo cual reduce la impedancia de la interfaz piel-electrodo. Esto se implemento adheriendo el cable de cobre con una lámina rectangular de aluminio por medio de una cinta doble faz, la parte de atrás se adherió a la gorra.
 
 <img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/0207e2cd-6d52-4f48-8ea4-59071d4b4711" />
-_Figura 4. Electrodos adheridos a la gorra._
+_Figura 4. Electrodos adheridos a la gorra_
 
 <img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/22109124-6822-4e69-9f6f-decfc9c32e8a" />
-_Figura 5. Dispositivo puesto sobre el sujeto._
+_Figura 5. Dispositivo puesto sobre el sujeto_
 
 5) Una vez se construyeron los electrodos, se realizó el montaje del circuito. Se usó un microcontrolador ESP32 para realizar la conversión ADC.
 
 <img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/1cf153c0-0ed6-477a-be7d-97cc708457d0" />
-_Figura 6. Montaje del circuito._
+_Figura 6. Montaje del circuito_
 
 6) Se creó un código de MATLAB capaz de gráficar la señal tal cuál como es capturada y presentarla a tiempo real.
 
 Con este código se evaluó el comportamiento del del dispositivo al tener el sujeto en relajación sentado por 6 segundos, para despues ponerse de pie y empezar a moverse. 
 
-<img width="1600" height="736" alt="image" src="https://github.com/user-attachments/assets/ff4447f5-fc16-47eb-bd76-5744279162a7" />
-_Figura 7. Gráfica GSR, sujeto en movimiento._
+#Resultados
 
-_hols_
+<img width="1600" height="736" alt="image" src="https://github.com/user-attachments/assets/ff4447f5-fc16-47eb-bd76-5744279162a7" />
+_Figura 7. Gráfica GSR, sujeto en movimiento_
+
+
 **Referencias**
 
 1. A. Klimek et al., “Wearables measuring electrodermal activity to assess perceived stress in care: a scoping review,” Acta Neuropsychiatrica, vol. 37, e19, 2023.
