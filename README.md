@@ -582,6 +582,9 @@ En adición, se hace uso de WebServer servidor (80), que convierte al ESP32 en u
 
 Una vez abierta la página, el dispositivo no necesita recargarla manualmente. El código JavaScript que está dentro de la página ejecuta fetch("/estado") cada 250 ms. Cada vez que lo hace, el dispositivo pregunta cuál es el estyado actual, la ESP32 responde con el texto correspondiente y la página cambia automáticamente el mensaje y el color. Para determinar si el sujeto esta bajo estrés, el código compara los datos cada 15 s, si nota un cambio abrupto lo toma como un aumento o decremento de estrés.
 
+<img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/0a730ba3-0f56-4e5e-8127-a28becd477a9" />
+_Figura 10. Montaje, incluyendo interfaz inalámbrica_
+
 9) Para finalizar, se hizo un análisis de los resultados de la práctica de laboratorio.
 
 # Resultados
