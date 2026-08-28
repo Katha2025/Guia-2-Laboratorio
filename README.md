@@ -181,8 +181,406 @@ Con este código se evaluó el comportamiento del dispositivo. Para ello, el suj
 
 7) Siguiendo, se le instruyó al sujeto que se mantuviera en reposo y sentado, para realizar una inspiración profunda rápida y una exhalación lenta y sostenida. Los resultados se pueden visualizar en la siguiente sección.
    
-8) Continuando, se implementó un código que permitió observar los niveles de estrés de forma inalambrica. (*)
+8) Continuando, se implementó un código que permitió observar los niveles de estrés de forma inalambrica. Para llegar a esto, se contruyó el siguiente código:
 
+```arduino
+#include <WiFi.h>
+#include <WebServer.h>
+
+// =====================================================
+// CONFIGURACIÓN DEL SENSOR GSR
+// =====================================================
+
+const int PIN_GSR = 4;
+const int FRECUENCIA = 50;
+const int PERIODO_MS = 1000 / FRECUENCIA;
+const int NUM_LECTURAS = 10;
+
+// =====================================================
+// CONFIGURACIÓN DE LA DETECCIÓN
+// =====================================================
+
+// Tiempo inicial para calcular el voltaje normal
+const int TIEMPO_CALIBRACION = 15;
+
+// Activa la alerta si el cambio supera 0.08 V
+const float UMBRAL_ESTRES = 0.08;
+
+// Desactiva la alerta cuando baja de 0.03 V
+const float UMBRAL_NORMAL = 0.03;
+
+// El cambio debe mantenerse durante un segundo
+const int TIEMPO_CONFIRMACION_MS = 1000;
+
+// Debe permanecer estable dos segundos para volver a normal
+const int TIEMPO_RECUPERACION_MS = 2000;
+
+// =====================================================
+// CONFIGURACIÓN WIFI
+// =====================================================
+
+const char* nombreRed = "GSR_ESP32";
+const char* claveRed = "gsr12345";
+
+WebServer servidor(80);
+
+// =====================================================
+// VARIABLES
+// =====================================================
+
+unsigned long tiempoAnterior = 0;
+
+float voltajeGSR = 0.0;
+float voltajeFiltrado = 0.0;
+float referencia = 0.0;
+
+double sumaCalibracion = 0.0;
+int muestrasCalibracion = 0;
+
+int contadorCambio = 0;
+int contadorRecuperacion = 0;
+
+bool calibrado = false;
+bool posibleEstres = false;
+
+String estadoActual = "CALIBRANDO";
+
+// =====================================================
+// PÁGINA PARA EL CELULAR
+// =====================================================
+
+const char paginaWeb[] PROGMEM = R"rawliteral(
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Monitor GSR</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: #111827;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    .tarjeta {
+      width: 85%;
+      max-width: 450px;
+      padding: 35px 20px;
+      background: #1f2937;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 30px;
+    }
+
+    #estado {
+      margin-top: 25px;
+      padding: 40px 15px;
+      border-radius: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .calibrando {
+      background: #f59e0b;
+    }
+
+    .normal {
+      background: #16a34a;
+    }
+
+    .estres {
+      background: #dc2626;
+    }
+
+    #conexion {
+      color: #9ca3af;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="tarjeta">
+
+    <h1>Monitor de estrés</h1>
+
+    <div id="estado" class="calibrando">
+      CALIBRANDO
+    </div>
+
+    <p id="conexion">
+      Conectado al sensor GSR
+    </p>
+
+  </div>
+
+  <script>
+    async function actualizarEstado() {
+      try {
+        const respuesta = await fetch("/estado");
+        const estado = await respuesta.text();
+
+        const caja = document.getElementById("estado");
+
+        caja.innerText = estado;
+
+        caja.classList.remove(
+          "normal",
+          "estres",
+          "calibrando"
+        );
+
+        if (estado.includes("POSIBLE")) {
+          caja.classList.add("estres");
+        }
+        else if (estado.includes("SIN")) {
+          caja.classList.add("normal");
+        }
+        else {
+          caja.classList.add("calibrando");
+        }
+
+        document.getElementById("conexion").innerText =
+          "Conectado al sensor GSR";
+      }
+      catch (error) {
+        document.getElementById("conexion").innerText =
+          "Conexión perdida";
+      }
+    }
+
+    setInterval(actualizarEstado, 250);
+  </script>
+
+</body>
+</html>
+)rawliteral";
+
+// =====================================================
+// FUNCIONES DEL SERVIDOR WEB
+// =====================================================
+
+void enviarPagina() {
+  servidor.send_P(
+    200,
+    "text/html; charset=utf-8",
+    paginaWeb
+  );
+}
+
+void enviarEstado() {
+  servidor.send(
+    200,
+    "text/plain; charset=utf-8",
+    estadoActual
+  );
+}
+
+// =====================================================
+// LEER EL VOLTAJE GSR
+// =====================================================
+
+float leerVoltajeGSR() {
+  unsigned long sumaMilivoltios = 0;
+
+  for (int i = 0; i < NUM_LECTURAS; i++) {
+    sumaMilivoltios += analogReadMilliVolts(PIN_GSR);
+    delayMicroseconds(200);
+  }
+
+  float promedioMilivoltios =
+    sumaMilivoltios / (float)NUM_LECTURAS;
+
+  return promedioMilivoltios / 1000.0;
+}
+
+// =====================================================
+// CALIBRACIÓN Y DETECCIÓN
+// =====================================================
+
+void actualizarDeteccion(float voltaje) {
+
+  // Filtro para reducir pequeñas variaciones
+  if (voltajeFiltrado == 0.0) {
+    voltajeFiltrado = voltaje;
+  }
+
+  voltajeFiltrado =
+    0.15 * voltaje +
+    0.85 * voltajeFiltrado;
+
+  // ---------------------------------------------------
+  // CALIBRACIÓN INICIAL
+  // ---------------------------------------------------
+
+  if (!calibrado) {
+    muestrasCalibracion++;
+    sumaCalibracion += voltajeFiltrado;
+
+    int muestrasNecesarias =
+      TIEMPO_CALIBRACION * FRECUENCIA;
+
+    if (muestrasCalibracion >= muestrasNecesarias) {
+      referencia =
+        sumaCalibracion / muestrasCalibracion;
+
+      calibrado = true;
+      estadoActual = "SIN ESTRÉS APARENTE";
+
+      contadorCambio = 0;
+      contadorRecuperacion = 0;
+    }
+
+    return;
+  }
+
+  // ---------------------------------------------------
+  // REFERENCIA ADAPTABLE
+  // ---------------------------------------------------
+
+  // Sigue lentamente los cambios normales de la señal
+  referencia =
+    0.002 * voltajeFiltrado +
+    0.998 * referencia;
+
+  float cambio =
+    abs(voltajeFiltrado - referencia);
+
+  int muestrasConfirmacion =
+    (TIEMPO_CONFIRMACION_MS * FRECUENCIA) / 1000;
+
+  int muestrasRecuperacion =
+    (TIEMPO_RECUPERACION_MS * FRECUENCIA) / 1000;
+
+  // ---------------------------------------------------
+  // ACTIVAR ALERTA
+  // ---------------------------------------------------
+
+  if (!posibleEstres) {
+
+    if (cambio >= UMBRAL_ESTRES) {
+      contadorCambio++;
+
+      if (contadorCambio >= muestrasConfirmacion) {
+        posibleEstres = true;
+
+        contadorCambio = 0;
+        contadorRecuperacion = 0;
+      }
+    }
+    else {
+      contadorCambio = 0;
+    }
+  }
+
+  // ---------------------------------------------------
+  // DESACTIVAR ALERTA
+  // ---------------------------------------------------
+
+  else {
+
+    if (cambio <= UMBRAL_NORMAL) {
+      contadorRecuperacion++;
+
+      if (contadorRecuperacion >= muestrasRecuperacion) {
+        posibleEstres = false;
+
+        contadorCambio = 0;
+        contadorRecuperacion = 0;
+      }
+    }
+    else {
+      contadorRecuperacion = 0;
+    }
+  }
+
+  // ---------------------------------------------------
+  // ACTUALIZAR MENSAJE DEL CELULAR
+  // ---------------------------------------------------
+
+  if (posibleEstres) {
+    estadoActual = "POSIBLE ESTRÉS";
+  }
+  else {
+    estadoActual = "SIN ESTRÉS APARENTE";
+  }
+}
+
+// =====================================================
+// CONFIGURACIÓN INICIAL
+// =====================================================
+
+void setup() {
+  Serial.begin(115200);
+
+  analogReadResolution(12);
+  analogSetPinAttenuation(PIN_GSR, ADC_11db);
+
+  // Crear red Wi-Fi
+  WiFi.softAP(nombreRed, claveRed);
+
+  // Configurar página web
+  servidor.on("/", enviarPagina);
+  servidor.on("/estado", enviarEstado);
+
+  servidor.begin();
+
+  Serial.println("Sistema GSR iniciado");
+  Serial.print("Red Wi-Fi: ");
+  Serial.println(nombreRed);
+
+  Serial.print("Dirección web: http://");
+  Serial.println(WiFi.softAPIP());
+}
+
+// =====================================================
+// PROGRAMA PRINCIPAL
+// =====================================================
+
+void loop() {
+  servidor.handleClient();
+
+  if (millis() - tiempoAnterior >= PERIODO_MS) {
+    tiempoAnterior = millis();
+
+    voltajeGSR = leerVoltajeGSR();
+
+    actualizarDeteccion(voltajeGSR);
+
+    // MATLAB recibe solamente el voltaje
+    Serial.println(voltajeGSR, 4);
+  }
+}
+```
+En este código, se define el nombre de la red que se va a crear y su contraseña. Al ejecutar la función WiFi.softAP(nombeRed, claveRed), el ESP32 es capaz de crear su propia red Wi-Fi, por lo que no necesita estar conectado a otra red de internet ni otro router. El dispositivo (celular, tablet, etc.) simplemente busca esa red y se conecta directamente al microcontrolador. 
+
+Una vez se tiene esta red, el ESP32 obtiene una dirección IP. Esta dirección funciona como la dirección del dispositivo dentro de su propia red. Es por esto que una vez se conecto el dispositivo a la red Wi-Fi, se puede abrir el navegador y escribir la dirección para acceder la interfaz del sensor.
+
+En adición, se hace uso de WebServer servidor (80), que convierte al ESP32 en un servidor web. Esto implica que el microcontrolador puede recibir solicitudes provinientes del navegador del dispositivo y responder enviandole información. Se crean dos rutas: 1. /, que envía toda la página web con el diseño del monitor. 2. /estado, que solamente devuelve el estado actual ("Calibrado", "Sin estrés aparente", "Posible estrés"). 
+
+Una vez abierta la página, el dispositivo no necesita recargarla manualmente. El código JavaScript que está dentro de la página ejecuta fetch("/estado") cada 250 ms. Cada vez que lo hace, el dispositivo pregunta cuál es el estyado actual, la ESP32 responde con el texto correspondiente y la página cambia automáticamente el mensaje y el color. Para determinar si el sujeto esta bajo estrés, el código compara los datos cada 15 s, si nota un cambio abrupto lo toma como un aumento o decremento de estrés.
+
+9) Para finalizar, se hizo un análisis de los resultados de la práctica de laboratorio.
 
 # Resultados
 
