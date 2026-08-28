@@ -602,6 +602,16 @@ Continuando, en la segunda parte del laboratorio, la señal adquirida mediante l
 
 En conclusión, el dispositivo desarrollado permitió adquirir y transmitir una señal GSR capaz de mostrar variaciones asociadas a diferentes condiciones fisiológicas del sujeto. Los resultados evidenciaron que el movimiento genera mayores perturbaciones en la señal que la respiración controlada, demostrando la presencia de artefactos que pueden afectar la estimación del nivel de estrés. La implementación de la ESP32 permitió clasificar el estado del sujeto a partir de cambios abruptos de la señal; sin embargo, este método puede generar falsos positivos, por lo que sería necesario incorporar filtrado y criterios de clasificación más robustos para mejorar la confiabilidad del sistema.
 
+# Conclusión
+
+1. El análisis realizado permitió comprender la utilidad de la actividad electrodérmica (EDA/GSR) como indicador de cambios fisiológicos asociados a la respuesta del organismo. La variación de la conductancia de la piel está relacionada principalmente con la actividad de las glándulas sudoríparas, por lo que su medición permite identificar cambios en la respuesta del sistema nervioso autónomo ante diferentes estímulos. Esto demuestra la importancia de la EDA como una señal fisiológica de interés en aplicaciones de instrumentación biomédica.
+
+  
+2. El análisis realizado permitió evidenciar la viabilidad de utilizar aluminio como material para la fabricación de electrodos destinados a la adquisición de la actividad electrodérmica. Su implementación permitió establecer una alternativa sencilla y de bajo costo frente a los electrodos convencionales, demostrando que es posible adaptar materiales conductores a sistemas de monitoreo fisiológico sin comprometer el objetivo principal de registrar las variaciones de conductancia de la piel. Esto permitió relacionar directamente los conceptos estudiados de conductividad, contacto electrodo-piel e instrumentación biomédica con una aplicación práctica.
+
+3. La incorporación de los electrodos de aluminio en una gorra permitió plantear una alternativa de monitoreo vestible para la adquisición de la señal EDA. A diferencia de la configuración tradicional, en la que los electrodos suelen ubicarse directamente en las manos o dedos y pueden limitar la movilidad del usuario, esta propuesta permite realizar el monitoreo manteniendo las manos libres. De esta manera, el análisis realizado demuestra el potencial de modificar la ubicación y configuración de los electrodos para desarrollar sistemas más cómodos y funcionales, especialmente en aplicaciones donde se requiere registrar señales fisiológicas mientras la persona realiza otras actividades.
+
+   
 **Referencias**
 
 1. A. Klimek et al., “Wearables measuring electrodermal activity to assess perceived stress in care: a scoping review,” Acta Neuropsychiatrica, vol. 37, e19, 2023.
