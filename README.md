@@ -12,12 +12,14 @@ De igual manera, esta señal puede medirse mediante dos electrodos colocados sob
 **Fundamento fisiológico de la respuesta galvánica cutánea**
 
 La relación entre EDA y actividad autonómica se explica principalmente mediante la acción del sistema nervioso simpático sobre las glándulas sudoríparas. Ante determinados estímulos físicos o psicológicos, se produce una activación autonómica que puede incrementar la actividad de estas glándulas y modificar la conductancia de la piel. Por ello, una variación de la GSR no debe interpretarse exclusivamente como una respuesta al estrés, sino como una manifestación de activación fisiológica o arousal, que puede aparecer ante diferentes tipos de estímulos.[2]
-  ñ
+
+  
 **Componente Tónica y fásica de la EDA**
 
 La señal EDA presenta dos componentes principales: una componente tónica, asociada con cambios lentos en el nivel general de conductancia, y una componente fásica, caracterizada por cambios rápidos y transitorios ante determinados estímulos. La componente tónica suele representarse mediante el Skin Conductance Level (SCL), mientras que las variaciones rápidas se describen mediante las Skin Conductance Responses (SCR).[2]
 
 El SCL permite caracterizar el estado basal o el nivel general de activación electrodérmica durante un periodo determinado. En contraste, una SCR corresponde a una respuesta transitoria que puede manifestarse como un incremento de la conductancia después de un estímulo, seguido posteriormente por una recuperación hacia niveles cercanos al estado basal.[2]
+
 
 **Respuesta galvánica cutánea y estrés**
 
